@@ -1,11 +1,17 @@
 <?php
 
+namespace ilateral\SilverStripe\GoogleMaps\Extensions;
+
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextField;
+use SilverStripe\ORM\DataExtension;
+
 /**
  * @author morven
  *
  */
 
-class GoogleMapSiteConfig extends DataExtension
+class SiteConfigExtension extends DataExtension
 {
     private static $db = array(
         'APIKey'   => 'Varchar(100)'

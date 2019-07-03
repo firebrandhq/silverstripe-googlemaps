@@ -1,5 +1,16 @@
 <?php
 
+namespace ilateral\SilverStripe\GoogleMaps\Model;
+
+use BetterBrief\GoogleMapField;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\HiddenField;
+use SilverStripe\Forms\ReadonlyField;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\SiteConfig\SiteConfig;
+
 /**
  * Google Map Objects represent a google map that needs to be rendered into a
  * page.
@@ -7,6 +18,8 @@
  */
 class GoogleMap extends DataObject
 {
+    private static $table_name = "GoogleMap";
+
     private $api_key;
 
     private static $db = array(
@@ -20,7 +33,7 @@ class GoogleMap extends DataObject
     );
 
     private static $has_one = array(
-        'Parent' => 'SiteTree'
+        'Parent' => SiteTree::class
     );
 
     private static $defaults = array(
@@ -62,7 +75,7 @@ class GoogleMap extends DataObject
                     _t("GoogleMaps.MapHeader", "Generate your map")
                 ),
                 $mapField = GoogleMapField::create($this, "Find the location"),
-                ReadOnlyField::create("Latitude"),
+                ReadonlyField::create("Latitude"),
                 ReadOnlyField::create("Longitude"),
                 ReadOnlyField::create("Zoom")
             )
@@ -126,7 +139,7 @@ class GoogleMap extends DataObject
         $location = $this->getLocation();
 
         if ($location) {
-            $link  = 'http://maps.google.com/maps?q=';
+            $link  = '//maps.google.com/maps?q=';
             $link .= $location;
             $link .= '&amp;z='.$this->Zoom;
         }
@@ -145,7 +158,7 @@ class GoogleMap extends DataObject
         $location = $this->getLocation();
 
         if ($location) {
-            $link = 'http://maps.googleapis.com/maps/api/staticmap?';
+            $link = '//maps.googleapis.com/maps/api/staticmap?';
             $link .= 'center=' . $location;
             $link .= '&zoom=' . $this->Zoom;
             $link .= '&size=' . $width . 'x' . $height . '';
@@ -157,9 +170,9 @@ class GoogleMap extends DataObject
         return $link;
     }
 
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = array())
     {
-        return $this->Parent()->canCreate();
+        return $this->Parent()->canCreate($member,$context);
     }
 
     public function canView($member = null)

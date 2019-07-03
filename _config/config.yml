@@ -1,0 +1,12 @@
+---
+name: googlemaps
+---
+SilverStripe\Control\Controller:
+  extensions:
+    - 'ilateral\SilverStripe\GoogleMaps\Extensions\ControllerExtension'
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - 'ilateral\SilverStripe\GoogleMaps\Extensions\GoogleMapsExtension'
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - 'ilateral\SilverStripe\GoogleMaps\Extensions\SiteConfigExtension'

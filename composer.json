@@ -1,7 +1,7 @@
 {
-  "name": "i-lateral/silverstripe-googlemaps",
-  "description": "A module to allow embeding of google maps inside page objects",
-	"type": "silverstripe-module",
+  	"name": "i-lateral/silverstripe-googlemaps",
+  	"description": "A module to allow embeding of google maps inside page objects",
+	"type": "silverstripe-vendormodule",
 	"homepage": "http://github.com/i-lateral/silverstripe-googlemaps",
 	"keywords": ["silverstripe", "googlemaps"],
 	"license": "BSD-3-Clause",
@@ -15,12 +15,29 @@
 		"issues": "http://github.com/i-lateral/silverstripe-googlemaps/issues"
 	},
 	"require": {
-		"silverstripe/framework": ">=3.1",
-		"silverstripe/cms": ">=3.1",
-        "betterbrief/silverstripe-googlemapfield": "*",
-        "symbiote/silverstripe-gridfieldextensions": "~2.0"
+		"silverstripe/framework": "^4.0",
+		"silverstripe/cms": "^4.0",
+		"betterbrief/silverstripe-googlemapfield": "^2.0",
+        "symbiote/silverstripe-gridfieldextensions": "^3.1"
 	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.7",
+		"silverstripe/vendor-plugin": "^1",
+		"squizlabs/php_codesniffer": "^3.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"ilateral\\SilverStripe\\GoogleMaps\\": "src/"
+		}
+    },
 	"extra": {
-		"installer-name": "googlemaps"
-	}
+		"installer-name": "googlemaps",
+		"expose": [
+			"client/dist",
+			"client/lang",
+			"client/thirdparty"
+		]
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }

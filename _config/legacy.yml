@@ -1,0 +1,6 @@
+---
+Name: googlemapslegacy
+---
+SilverStripe\ORM\DatabaseAdmin:
+  classname_value_remapping:
+    GoogleMap: ilateral\SilverStripe\CustomMenus\Model\GoogleMap

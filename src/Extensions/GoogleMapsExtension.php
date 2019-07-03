@@ -1,5 +1,17 @@
 <?php
 
+namespace ilateral\SilverStripe\GoogleMaps\Extensions;
+
+use ilateral\SilverStripe\GoogleMaps\Model\GoogleMap;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\FieldGroup;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\ORM\DataExtension;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+
 /**
  * This class adds maps support to the CMS, allowing you to tick "Show maps"
  * under the settings pane. This then adds the Maps gridfield to the content
@@ -9,7 +21,7 @@
  * @author morven [at] i-lateral.com
  *
  **/
-class GoogleMapSiteTree extends DataExtension
+class GoogleMapsExtension extends DataExtension
 {
 
     private static $db = array(
@@ -20,7 +32,7 @@ class GoogleMapSiteTree extends DataExtension
     );
 
     private static $has_many = array(
-        'Maps' => "GoogleMap"
+        'Maps' => GoogleMap::class
     );
 
     public function updateCMSFields(FieldList $fields)
@@ -37,7 +49,7 @@ class GoogleMapSiteTree extends DataExtension
 
             // Add creation button if member has create permissions
             if ($this->owner->canCreate()) {
-                $config->removeComponentsByType('GridFieldAddNewButton');
+                $config->removeComponentsByType(GridFieldAddNewButton::class);
                 $add_button = new GridFieldAddNewButton('toolbar-header-left');
                 $add_button->setButtonName(_t("GoogleMaps.AddGoogleMap", "Add Google Map"));
                 $config->addComponent($add_button);
