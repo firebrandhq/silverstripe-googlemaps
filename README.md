@@ -10,8 +10,9 @@ Mo: morven [@] ilateral.co.uk
 
 ## Requirements
 
-SilverStripe 3.1 or greater.
-[SortableGridField](https://github.com/UndefinedOffset/SortableGridField)
+SilverStripe 4 or greater.
+[GridFieldExtensions](https://github.com/symbiote/silverstripe-gridfieldextensions)
+[GoogleMapField](https://github.com/BetterBrief/silverstripe-googlemapfield)
 
 ## Further Docs
 
